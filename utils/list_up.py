@@ -1,63 +1,46 @@
+# 이후 github Action 까지 설정해주어야 자동 매크로 돌아감
+import os
 
-# from collections import Counter
-# from datetime import datetime
-# import os
-# import re
+def problem_source_code():
+    py_problem_list = []
+    java_problem_list = []
 
+    for (path, dir, files) in os.walk("./백준/"):
+        for filename in files:
+            ext = os.path.splitext(filename)[-1]
+            problem_name = path.split('/')[-1]
+            
+            if ext == '.py':
+                py_problem_list.append(f'[{problem_name}](https://www.acmicpc.net/problem/{problem_name.split(".")[0]})')
+            if ext == '.java':
+                java_problem_list.append(f'[{problem_name}](https://www.acmicpc.net/problem/{problem_name.split(".")[0]})')
 
-# def problem_source_code():
-#     problem_solve_code_list = []
-
-#     directory_list = [directory for directory in os.listdir("./") if "DAY" in directory]
-
-#     for directory in directory_list:
-#         code_list = os.listdir(f"./{directory}")
-
-#         problem_solve_code_list += code_list
-
-#     name_list = [re.findall(r'\[[^)]*\]', code_name) for code_name in problem_solve_code_list]
-
-#     name_list = [name[0].replace("[", "").replace("]", "") for name in name_list if len(name) > 0]
-
-#     return name_list
+    return py_problem_list, java_problem_list
 
 
-# def make_count_info(total_code_num, code_cnt_info):
-#     count_info = f"#### 현재까지 풀어본 총 문제 수 : {total_code_num}개\n"
+def make_read_me(py_name_list, java_name_list):
+    return f"""# Baekjoon
+<img src="https://img.shields.io/badge/python-3776AB?style=flat&logo=python&logoColor=white"> <img src="https://img.shields.io/badge/-JAVA-007396?style=flat&logo=OpenJDK&logoColor=white">   
+(푼 문제 자동으로 README.md 업데이트됨.)   
 
-#     for name in code_cnt_info:
-#         temp = f"- {name[0]} - {name[1]}개\n"
-#         count_info += temp
-
-#     return count_info
-
-
-# def make_read_me(name_list):
-#     return f"""## 코딩 1일 1문제! ( CODING TEST PRACTICE )
-# [![SOMJANG LOGO](/images/SOMJANG.png)](https://somjang.tistory.com/category/Programming/%EC%BD%94%EB%94%A9%201%EC%9D%BC%201%EB%AC%B8%EC%A0%9C)
-# ## 하루에 한 문제 씩이라도 코딩문제를 풀어보자! 
-# ### Since 2020.02.07 ~
-# #### 모든 문제는 Python3 로 해결하였습니다.
-# {name_list}
-# #### 아래의 페이지에서 제공하는 문제들로 구성되어 있습니다.
-# [![BaekJoon](/images/BaekJoon.png)](https://www.acmicpc.net/)
-# [![Programmers](/images/Programmers.png)](https://programmers.co.kr/)
-# [![Samsung_SW_Academy](/images/Samsung_SW_Academy.png)](https://swexpertacademy.com/main/main.do)
-# [![LeetCode](/images/LeetCode.png)](https://leetcode.com/)
-# [![HackerRank](/images/HackerRank.png)](https://www.hackerrank.com/)
-# <p align="center"><a href="http://www.jungol.co.kr/"><img src="/images/JUNGOL.png"></a></p>
-# <p align="center"><a href="https://codeup.kr/"><img src="/images/CodeUp.png"></a></p>"""
+ ✔️ Python 문제 리스트업   
+    - {'<br>    - '.join(py_name_list)}   
+    
+ ✔️ Java 문제 리스트업   
+    - {'<br>    - '.join(java_name_list)}
 
 
-# def update_readme_md():
-#     name_list = problem_source_code()
-
-#     readme = make_read_me(name_list=name_list)
-
-#     return readme
+"""
 
 
-# if __name__ == "__main__":
-#     readme = update_readme_md()
-#     with open("./README.md", 'w', encoding='utf-8') as f:
-#         f.write(readme)
+def update_readme_md():
+    py_name_list, java_name_list = problem_source_code()
+    readme = make_read_me(py_name_list=py_name_list, java_name_list=java_name_list)
+
+    return readme
+
+
+if __name__ == "__main__":
+    readme = update_readme_md()
+    with open("./README.md", 'w', encoding='utf-8') as f:
+        f.write(readme)
