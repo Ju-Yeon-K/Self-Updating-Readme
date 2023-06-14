@@ -17,9 +17,9 @@
 
 #     name_list = [re.findall(r'\[[^)]*\]', code_name) for code_name in problem_solve_code_list]
 
-    name_list = [name[0].replace("[", "").replace("]", "") for name in name_list if len(name) > 0]
+#     name_list = [name[0].replace("[", "").replace("]", "") for name in name_list if len(name) > 0]
 
-    return name_list
+#     return name_list
 
 
 # def make_count_info(total_code_num, code_cnt_info):
@@ -32,32 +32,32 @@
 #     return count_info
 
 
-def make_read_me(name_list):
-    return f"""## 코딩 1일 1문제! ( CODING TEST PRACTICE )
-[![SOMJANG LOGO](/images/SOMJANG.png)](https://somjang.tistory.com/category/Programming/%EC%BD%94%EB%94%A9%201%EC%9D%BC%201%EB%AC%B8%EC%A0%9C)
-## 하루에 한 문제 씩이라도 코딩문제를 풀어보자! 
-### Since 2020.02.07 ~
-#### 모든 문제는 Python3 로 해결하였습니다.
-{name_list}
-#### 아래의 페이지에서 제공하는 문제들로 구성되어 있습니다.
-[![BaekJoon](/images/BaekJoon.png)](https://www.acmicpc.net/)
-[![Programmers](/images/Programmers.png)](https://programmers.co.kr/)
-[![Samsung_SW_Academy](/images/Samsung_SW_Academy.png)](https://swexpertacademy.com/main/main.do)
-[![LeetCode](/images/LeetCode.png)](https://leetcode.com/)
-[![HackerRank](/images/HackerRank.png)](https://www.hackerrank.com/)
-<p align="center"><a href="http://www.jungol.co.kr/"><img src="/images/JUNGOL.png"></a></p>
-<p align="center"><a href="https://codeup.kr/"><img src="/images/CodeUp.png"></a></p>"""
+# def make_read_me(name_list):
+#     return f"""## 코딩 1일 1문제! ( CODING TEST PRACTICE )
+# [![SOMJANG LOGO](/images/SOMJANG.png)](https://somjang.tistory.com/category/Programming/%EC%BD%94%EB%94%A9%201%EC%9D%BC%201%EB%AC%B8%EC%A0%9C)
+# ## 하루에 한 문제 씩이라도 코딩문제를 풀어보자! 
+# ### Since 2020.02.07 ~
+# #### 모든 문제는 Python3 로 해결하였습니다.
+# {name_list}
+# #### 아래의 페이지에서 제공하는 문제들로 구성되어 있습니다.
+# [![BaekJoon](/images/BaekJoon.png)](https://www.acmicpc.net/)
+# [![Programmers](/images/Programmers.png)](https://programmers.co.kr/)
+# [![Samsung_SW_Academy](/images/Samsung_SW_Academy.png)](https://swexpertacademy.com/main/main.do)
+# [![LeetCode](/images/LeetCode.png)](https://leetcode.com/)
+# [![HackerRank](/images/HackerRank.png)](https://www.hackerrank.com/)
+# <p align="center"><a href="http://www.jungol.co.kr/"><img src="/images/JUNGOL.png"></a></p>
+# <p align="center"><a href="https://codeup.kr/"><img src="/images/CodeUp.png"></a></p>"""
 
 
-def update_readme_md():
-    name_list = problem_source_code()
+# def update_readme_md():
+#     name_list = problem_source_code()
 
-    readme = make_read_me(name_list=name_list)
+#     readme = make_read_me(name_list=name_list)
 
-    return readme
+#     return readme
 
 
-if __name__ == "__main__":
-    readme = update_readme_md()
-    with open("./README.md", 'w', encoding='utf-8') as f:
-        f.write(readme)
+# if __name__ == "__main__":
+#     readme = update_readme_md()
+#     with open("./README.md", 'w', encoding='utf-8') as f:
+#         f.write(readme)
